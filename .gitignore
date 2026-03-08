@@ -6,7 +6,6 @@ package-lock.json
 # Hardhat files
 hardhat/cache
 hardhat/artifacts
-hardhat/scripts
 hardhat/artifacts
 # solidity-coverage files
 hardhat/coverage

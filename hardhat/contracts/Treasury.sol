@@ -17,8 +17,8 @@ contract Treasury is Ownable,ReentrancyGuard {
     address public dao;
     bool public daoSet;
 
-   constructor(address initialOwner) Ownable(initialOwner) {
-
+   constructor() Ownable(msg.sender) {
+    
    }
     modifier onlyDAO() {
         require(msg.sender == dao, "Not DAO");
