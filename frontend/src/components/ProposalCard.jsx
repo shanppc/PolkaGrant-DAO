@@ -1,6 +1,17 @@
 import { useEffect, useState } from 'react'
 import { formatPAS, msToCountdown } from '../utils/formatters'
 
+// Converts a raw 18-decimal BigInt (wei) to a human-readable string
+// e.g. 1000000000000000000n → "1.00"
+function formatVotes(raw) {
+  if (raw == null) return '0'
+  const n = BigInt(raw)
+  const whole = n / 10n ** 18n
+  const remainder = n % 10n ** 18n
+  const decimals = String(remainder).padStart(18, '0').slice(0, 2)
+  return `${whole}.${decimals}`
+}
+
 function Pill({ children, tone = 'neutral' }) {
   const cls =
     tone === 'active'
@@ -30,7 +41,7 @@ export default function ProposalCard({ proposal, nowMs, onVote, onFinalize, onEx
   const isActive = nowMs < deadlineMs && !proposal.executed
 
   const computedPassed =
-    proposal.passed ?? (proposal.finalized ? (proposal.votesFor > proposal.votesAgainst) : null)
+    proposal.passed ?? (proposal.finalized ? (BigInt(proposal.votesFor ?? 0n) > BigInt(proposal.votesAgainst ?? 0n)) : null)
 
   const status = proposal.executed
     ? { label: 'Executed', tone: 'executed' }
@@ -40,8 +51,12 @@ export default function ProposalCard({ proposal, nowMs, onVote, onFinalize, onEx
         ? { label: 'Passed', tone: 'passed' }
         : { label: 'Failed', tone: 'failed' }
 
-  const totalVotes = (proposal.votesFor ?? 0n) + (proposal.votesAgainst ?? 0n)
-  const forPct = totalVotes === 0n ? 0 : Number((proposal.votesFor * 10000n) / totalVotes) / 100
+  // Both votesFor and votesAgainst are 18-decimal BigInts from the contract.
+  // We scale down before percentage math to avoid Number overflow on huge wei values.
+  const scaledFor = BigInt(proposal.votesFor ?? 0n) / 10n ** 15n      // keeps 3 sig-fig precision
+  const scaledAgainst = BigInt(proposal.votesAgainst ?? 0n) / 10n ** 15n
+  const totalVotes = scaledFor + scaledAgainst
+  const forPct = totalVotes === 0n ? 0 : Number((scaledFor * 10000n) / totalVotes) / 100
 
   const canVote = isActive
   const canFinalize = !isActive && !proposal.finalized && !proposal.executed
@@ -79,8 +94,8 @@ export default function ProposalCard({ proposal, nowMs, onVote, onFinalize, onEx
             />
           </div>
           <div className="text-xs text-white/60">
-            For <span className="font-semibold text-white">{String(proposal.votesFor)}</span> · Against{' '}
-            <span className="font-semibold text-white">{String(proposal.votesAgainst)}</span>
+            For <span className="font-semibold text-white">{formatVotes(proposal.votesFor)}</span> · Against{' '}
+            <span className="font-semibold text-white">{formatVotes(proposal.votesAgainst)}</span>
           </div>
         </div>
       </div>
@@ -128,4 +143,3 @@ export default function ProposalCard({ proposal, nowMs, onVote, onFinalize, onEx
     </div>
   )
 }
-

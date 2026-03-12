@@ -101,25 +101,24 @@ export default function App() {
         const countBn = await read.dao.proposalCount()
         const proposalCount = Number(countBn)
         const items = []
-        for (let i = 0; i < proposalCount; i++) {
+        // proposalCount() returns the latest proposal ID, so fetch i=1..proposalCount.
+        for (let i = 1; i <= proposalCount; i++) {
           const p = await read.dao.proposals(i)
-          // proposals(uint256) returns:
-          // (address,string,uint256,uint256,uint256,uint256,uint256,bool,bool,bool)
-          const description = p[1]
-          const amount = p[2]
-          const votesFor = p[3]
-          const votesAgainst = p[4]
-          const deadline = p[5]
-          const b0 = Boolean(p[7])
-          const b1 = Boolean(p[8])
-          const b2 = Boolean(p[9])
-
-          // Heuristic mapping of bool fields (varies by contract implementations):
-          // - executed is almost always present → if any bool flips after execute, treat "any true with finalized" logic
-          // We'll interpret:
-          //   finalized = b0
-          //   executed = b1
-          //   passed   = b2
+          // Solidity struct order:
+          // [0] proposer  [1] description  [2] amount     [3] deadline
+          // [4] votesFor  [5] votesAgainst [6] executionTime
+          // [7] finalized [8] executed     [9] passed
+  
+          const description  = p[1]
+          const amount       = p[2]
+          const deadline     = p[3]   // was wrongly p[5]
+          const votesFor     = p[4]   // was wrongly p[3]
+          const votesAgainst = p[5]   // was wrongly p[4]
+          // p[6] = executionTime (not used in UI)
+          // Bools map directly to struct order: [7] finalized [8] executed [9] passed
+          const finalized    = Boolean(p[7])
+          const executed     = Boolean(p[8])
+          const passed       = Boolean(p[9])
           items.push({
             id: i,
             description,
@@ -127,9 +126,9 @@ export default function App() {
             votesFor,
             votesAgainst,
             deadline,
-            finalized: b0,
-            executed: b1,
-            passed: b2,
+            finalized,
+            executed,
+            passed,
           })
         }
         const now = Date.now()

@@ -1,9 +1,6 @@
 import { Contract } from 'ethers'
 import { ADDRESSES } from './config'
 
-// IMPORTANT ABI RULE:
-// - Human-readable ABI only (no JSON files)
-// - Only include functions actually used by the frontend
 
 export const erc20ABI = [
   'function symbol() view returns (string)',
@@ -30,7 +27,6 @@ export const daoABI = [
 ]
 
 export const faucetABI = [
-  // PolkaGrant faucet: mint 1500 PGT to caller (assumed)
   'function requestTokens()',
 ]
 

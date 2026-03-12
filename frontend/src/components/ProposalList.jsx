@@ -17,7 +17,7 @@ export default function ProposalList({ proposals, nowMs, onVote, onFinalize, onE
         {proposals?.length ? (
           proposals.map((p) => (
             <ProposalCard
-              key={p.id}
+              key={String(p.id)}
               proposal={p}
               nowMs={nowMs}
               onVote={onVote}
@@ -35,4 +35,3 @@ export default function ProposalList({ proposals, nowMs, onVote, onFinalize, onE
     </section>
   )
 }
-
