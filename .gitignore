@@ -16,4 +16,10 @@ hardhat/ignition
 hardhat/package.json
 hardhat/package-lock.json
 
-
+# Frontend build/cache
+frontend/node_modules
+frontend/dist
+frontend/dist-ssr
+frontend/*.local
+frontend/*.log
+frontend/logs
