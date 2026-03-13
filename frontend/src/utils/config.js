@@ -10,7 +10,7 @@ export const NETWORK = {
     decimals: 18,
   },
   rpcUrls: [
-    'https://testnet-passet-hub-eth-rpc.polkadot.io',
+    'https://services.polkadothub-rpc.com/testnet',
   ],
   blockExplorerUrls: [
     'https://blockscout-testnet.polkadot.io',
