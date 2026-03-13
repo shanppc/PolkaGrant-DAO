@@ -369,8 +369,11 @@ export default function App() {
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-4">
           <div className="flex items-center gap-3">
             <div className="relative">
-              <div className="h-10 w-10 animate-floaty rounded-2xl bg-gradient-to-br from-polkaPink to-polkaPurple shadow-glow" />
-              <div className="absolute inset-0 rounded-2xl bg-white/5" />
+              <img
+  src="/polkadot_grant.png"
+  alt="PolkaGrant DAO"
+  className="h-10 w-10 rounded-2xl object-contain"
+/>
             </div>
             <div className="min-w-0">
               <div className="text-base font-semibold text-white">{APP_NAME}</div>
