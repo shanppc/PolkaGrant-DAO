@@ -2,7 +2,7 @@ export const APP_NAME = 'PolkaGrant DAO'
 
 export const NETWORK = {
   chainId: 420420417,
-  chainIdHex: '0x190F9C71', // 420420417
+  chainIdHex: '0x190F1B41', // 420420417
   chainName: 'Polkadot Testnet',
   nativeCurrency: {
     name: 'PAS',
@@ -10,7 +10,7 @@ export const NETWORK = {
     decimals: 18,
   },
   rpcUrls: [
-    'https://services.polkadothub-rpc.com/testnet',
+    'https://eth-rpc-testnet.polkadot.io',
   ],
   blockExplorerUrls: [
     'https://blockscout-testnet.polkadot.io',
