@@ -4,7 +4,7 @@
 
 PolkaGrant DAO is a **Staked Governance Grant DAO** built on the Polkadot Testnet that enables communities to collectively fund builders through transparent on-chain governance.
 
-🌐 **Live App:**
+ **Live App:**
 https://polka-grant-dao.vercel.app
 
 ---
@@ -120,10 +120,6 @@ Security practices used:
 
 ## 🖥 Frontend
 
-Live Dashboard:
-
-👉 https://polka-grant-dao.vercel.app
-
 Features:
 
 * MetaMask wallet connection
@@ -136,7 +132,7 @@ Features:
 
 ---
 
-## 🧪 Key Governance Protections
+##  Key Governance Protections
 
 * ✅ No double voting
 * ✅ Execution only after deadline
@@ -167,7 +163,7 @@ Features:
 
 ---
 
-## 🎯 Hackathon Goals
+##  Hackathon Goals
 
 This project demonstrates:
 
@@ -179,7 +175,7 @@ This project demonstrates:
 
 ---
 
-## 🔮 Future Improvements
+##  Future Improvements
 
 * Delegated voting
 * Quadratic voting
