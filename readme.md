@@ -4,6 +4,8 @@
 
 PolkaGrant DAO is a **Staked Governance Grant DAO** built on the Polkadot Testnet that enables communities to collectively fund builders through transparent on-chain governance.
 
+<img width="1305" height="463" alt="DashBoard" src="https://github.com/user-attachments/assets/4c88c4bc-903a-4fa3-b9cc-255c7557fe8b" />
+
  **Live App:**
 https://polka-grant-dao.vercel.app
 
@@ -52,6 +54,8 @@ Users hold and stake PGT(PolkaGrant Token) tokens to gain voting power.
 
 ### 3️⃣ Grant Proposals
 
+<img width="634" height="318" alt="Create Proposal" src="https://github.com/user-attachments/assets/e3fa16d1-271e-481f-b73d-0073c5d9d490" />
+
 Builders submit proposals containing:
 
 * Description
@@ -67,6 +71,8 @@ Stakers vote:
 
 Only staked tokens count.
 
+<img width="1240" height="564" alt="Proposal" src="https://github.com/user-attachments/assets/1548b3d8-32da-4302-85c7-015bf6612c70" />
+
 ### 5️⃣ Timelock Security
 
 If proposal passes:
@@ -77,33 +83,6 @@ If proposal passes:
 ### 6️⃣ Execution
 
 Anyone can execute approved proposals and release funds from treasury.
-
----
-
-## 🏗 Smart Contract Architecture
-
-The system uses a modular architecture:
-
-```
-PGT Token → Staking → DAO Governance → Treasury
-```
-
-### Contracts
-
-| Contract  | Purpose                 |
-| --------- | ----------------------- |
-| PGT Token | Governance token        |
-| Staking   | Voting power management |
-| DAO       | Proposal & voting logic |
-| Treasury  | Secure fund storage     |
-
-Security practices used:
-
-* Check-Effects-Interactions pattern
-* Double voting prevention
-* Timelock execution
-* Separate treasury contract
-* DAO-controlled permissions
 
 ---
 ## 📜 Deployed Smart Contracts (Polkadot Testnet)
@@ -162,32 +141,80 @@ Features:
 * Currency: PAS
 
 ---
+## 💻 Local Installation Guide
 
-##  Hackathon Goals
+Follow these steps to run **PolkaGrant DAO** locally for development and testing.
 
-This project demonstrates:
+### Prerequisites
 
-* DAO governance architecture
-* Secure treasury design
-* Stake-based voting
-* Full-stack Web3 integration
-* Polkadot EVM ecosystem usage
+Make sure you have installed:
 
----
-
-##  Future Improvements
-
-* Delegated voting
-* Quadratic voting
-* Governance analytics dashboard
-* Multi-sig treasury upgrades
-* Cross-chain grant funding
+- Node.js (v18 or higher)
+- npm or yarn
+- MetaMask browser extension
+- Git
 
 ---
 
-##  Author
+### 1️⃣ Clone Repository
 
-** Zeeshan**
+```bash
+git clone https://github.com/shanppc/PolkaGrant-DAO.git
+cd PolkaGrant-DAO
+```
+### 2️⃣ Install Dependencies
+```bash
+npm install
+```
+### 3️⃣ Compile Smart Contracts
+```bash
+npx hardhat compile
+```
+### 4️⃣ Start Local Hardhat Node
+```bash
+npx hardhat node
+```
+### 5️⃣ Deploy Contracts
+```bash
+npx hardhat run scripts/deploy.js --network localhost
+```
+
+### 6️⃣ Run Frontend
+```bash
+npm run dev
+```
+---
+
+
+##  Vision & Commitment
+
+PolkaGrant DAO is built with the vision of enabling **community-owned grant funding infrastructure** within the Polkadot ecosystem.
+
+### Vision
+
+To create a decentralized system where:
+
+- Builders receive funding through transparent governance
+- Communities collectively decide ecosystem growth
+- Trust is replaced by verifiable on-chain logic
+- Governance power belongs to committed participants
+
+---
+
+### Commitment
+
+This project represents a long-term commitment to:
+
+- ✅ Open-source development
+- ✅ Secure smart contract design
+- ✅ Decentralized governance experimentation
+- ✅ Learning and contributing to the Polkadot ecosystem
+- ✅ Building real-world DAO infrastructure
+
+---
+
+## Author
+**Zeeshan**
 
 Blockchain Developer | Solidity Learner | Web3 Builder
 
